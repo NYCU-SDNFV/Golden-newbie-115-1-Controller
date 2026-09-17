@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "channel": "newbie-115-1",
-  "version": "0.1.0",
-  "tag": "newbie-115-1-v0.1.0",
+  "version": "0.1.1",
+  "tag": "newbie-115-1-v0.1.1",
   "template": "NYCU-SDNFV/Golden-newbie-115-1-Controller",
-  "source_sha": "1b1732b807fdc35cc25c356cc9220d73de7a462f",
-  "minimum_version": "0.1.0"
+  "source_sha": "e91fc1aa4f7502328ccd1b8b57f4ff09fe62e442",
+  "minimum_version": "0.1.1"
 }

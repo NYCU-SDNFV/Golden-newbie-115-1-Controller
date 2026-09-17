@@ -356,6 +356,18 @@ is what the TA reads and grades.
 
 ### Starter updates
 
+Run `make help` for the update and resubmission sequence. The JSON files under
+`results/` are not ignored: commit or stash those measurements as well as your
+answers before updating. Captures and logs remain ignored; do not force-add
+them merely to make the working tree clean.
+
+Prefer committing and pushing your Classroom default branch from your Linux
+or WSL checkout. `gh student submit` creates a remote snapshot; verify that
+your local work commits were pushed and fetch/merge any new remote commit
+before continuing locally. The tested Windows v1.52.1 CLI can lose executable
+bits while snapshotting files. Do not reset away your history to resolve this;
+use a normal merge and retain the supplied file modes.
+
 ```sh
 make check-update
 make update
