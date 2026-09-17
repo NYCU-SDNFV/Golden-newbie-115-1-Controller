@@ -1,0 +1,16 @@
+# Lab 1 -- complete, nothing to change here. You solved this in Lab 0.
+services:
+  lab1:
+    build: .
+    container_name: lab1
+    privileged: true          # Mininet needs netns + veth; OVS writes /var/run
+    # mnexec closes every descriptor up to RLIMIT_NOFILE when it creates a host.
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
