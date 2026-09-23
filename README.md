@@ -140,6 +140,25 @@ importing it (or Ryu, or Scapy) in your controller fails A3a.
 
 ## 3. How to work
 
+Before the first run, prepare the **Docker engine host** using the public
+[lab image setup guide](https://github.com/NYCU-SDNFV/lab-images#quick-start).
+Installing the image alone does not configure the host's socket-buffer and
+PTY limits. On a Linux VM you administer:
+
+```bash
+IMAGE=ghcr.io/nycu-sdnfv/lab-base:115-1
+docker run --rm --privileged --network host --entrypoint python3 "$IMAGE" \
+  -m lab_resources host-prepare --profile course
+docker run --rm --network host --entrypoint python3 "$IMAGE" \
+  -m lab_resources host-verify --profile course
+```
+
+These one-shot helpers change or inspect host-wide settings; do not run
+preparation against a shared or remote engine without its administrator's
+authorization. Follow the guide to persist settings after reboot. Normal lab
+containers stay network-isolated. Official grading prepares its own disposable
+GitHub-hosted Linux engine; local and self-hosted machines remain your responsibility.
+
 ```bash
 make up                       # build + start the container (as in Lab 0)
 make a0                       # run the reference controller, record captures/reference.pcap
