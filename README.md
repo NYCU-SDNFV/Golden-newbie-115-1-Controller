@@ -140,24 +140,26 @@ importing it (or Ryu, or Scapy) in your controller fails A3a.
 
 ## 3. How to work
 
-Before the first run, prepare the **Docker engine host** using the public
-[lab image setup guide](https://github.com/NYCU-SDNFV/lab-images#quick-start).
-Installing the image alone does not configure the host's socket-buffer and
-PTY limits. On a Linux VM you administer:
+Use a Linux VM that you administer as the **Docker engine host**. In the course
+environment this means the assigned lab VM, not the Proxmox/PVE hypervisor.
+Lab 1 uses the OVS userspace datapath and does not require an OVS kernel module
+or BBR, but the Docker engine still needs the shared course resource limits.
+
+Before the first run and after a host reboot or starter update, run:
 
 ```bash
-IMAGE=ghcr.io/nycu-sdnfv/lab-base:115-1
-docker run --rm --privileged --network host --entrypoint python3 "$IMAGE" \
-  -m lab_resources host-prepare --profile course
-docker run --rm --network host --entrypoint python3 "$IMAGE" \
-  -m lab_resources host-verify --profile course
+make check-update
+make pretest
 ```
 
-These one-shot helpers change or inspect host-wide settings; do not run
-preparation against a shared or remote engine without its administrator's
-authorization. Follow the guide to persist settings after reboot. Normal lab
-containers stay network-isolated. Official grading prepares its own disposable
-GitHub-hosted Linux engine; local and self-hosted machines remain your responsibility.
+`make pretest` is a non-scoring diagnostic and is deliberately not run by
+`make test`. If it reports that host preparation is required, follow the exact
+repair and persistence instructions in the generated
+[Golden runtime guide](.github/golden/README.md). Those one-shot repair commands
+change host-wide settings: never run them on PVE or on a shared/remote Docker
+engine without its administrator's authorization. Official grading prepares
+its own disposable engine; local and self-hosted machines remain your
+responsibility.
 
 ```bash
 make up                       # build + start the container (as in Lab 0)

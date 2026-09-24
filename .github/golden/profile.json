@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "name": "Controller",
+  "lab": 1,
+  "assignment": "lab1-controller",
+  "checks": 16,
+  "environment": "controller"
+}

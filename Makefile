@@ -6,17 +6,21 @@ CONTAINER ?= lab1
 MODE      ?= controller
 
 .NOTPARALLEL:
-.PHONY: all help build up down policy check-update update test test-offline a0 a1 a2 a3 a4 report b c hold shell logs clean
+.PHONY: all help pretest build up down policy check-update update test test-offline a0 a1 a2 a3 a4 report b c hold shell logs clean
 
 all: up test
 
 help:
+	@echo "make pretest       diagnose Docker engine host prerequisites (non-scoring)"
 	@echo "make up            start the supplied Lab 1 environment"
 	@echo "make check-update  compare your starter with the required release"
 	@echo "make update        prepare a lossless instructor/update-<tag> branch"
 	@echo "After update: review and merge that branch, run make test, then push your default branch."
 	@echo "Before update: commit or stash answers and generated results/*.json; never discard your work."
 	@echo "Publishing an instructor release does not automatically change or notify your repository."
+
+pretest:
+	@python3 -B .github/golden/pretest.py
 
 build:
 	$(COMPOSE) build
