@@ -1,0 +1,7 @@
+{
+  "schema": "viva/pointer/v1",
+  "repo": "instructor-lab2",
+  "ref": "viva",
+  "path": "viva/manifest.json",
+  "note": "Read by NYCU-SDNFV/viva to find this lab's checkpoint/viva manifest. No grading or student-facing effect."
+}
